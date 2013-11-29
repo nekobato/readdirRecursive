@@ -1,0 +1,19 @@
+{
+  "name": "readdir-recursive",
+  "version": "0.0.1",
+  "description": "read directory recursively",
+  "main": "lib/recursive.js",
+  "scripts": {
+    "test": "test"
+  },
+ "repository": {
+    "type": "git",
+    "url": "https://github.com/nekobato/readdirRecursive.git"
+  },
+  "keywords": [
+    "readdir",
+    "recursive"
+  ],
+  "author": "nekobato",
+  "license": "MIT"
+}
