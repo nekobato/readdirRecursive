@@ -29,7 +29,7 @@ Returns all files;
 files = rread.fileSync('./');
 ```
 
-### ReadfilesSync
+### ReaddirsSync
 
 Callback operates each dirs.
 
@@ -39,7 +39,7 @@ rread.dir('./', function(dir) {
 }
 ```
 
-### ReadfilesSync
+### ReaddirsSync
 
 Returns all dirs;
 
