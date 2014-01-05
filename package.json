@@ -13,7 +13,7 @@
   "keywords": [
     "readdir",
     "readfile",
-    "recursive",
+    "recursive"
   ],
   "author": "nekobato",
   "license": "MIT"
