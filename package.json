@@ -1,8 +1,8 @@
 {
   "name": "readdir-recursive",
-  "version": "0.0.1",
-  "description": "read directory recursively",
-  "main": "lib/recursive.js",
+  "version": "0.0.2",
+  "description": "read directory recursively & output files or dirs",
+  "main": "index.js",
   "scripts": {
     "test": "test"
   },
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "readdir",
-    "recursive"
+    "readfile",
+    "recursive",
   ],
   "author": "nekobato",
   "license": "MIT"
