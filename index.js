@@ -1,9 +1,7 @@
 fs = require('fs');
 path = require('path');
 
-var RecursiveRead = function() {
-  this.result = [];
-}
+var RecursiveRead = function() {}
 
 RecursiveRead.prototype.file = function(dir, callback) {
   var selfArgs = arguments;
@@ -21,23 +19,25 @@ RecursiveRead.prototype.file = function(dir, callback) {
   });
 }
 
-RecursiveRead.prototype.fileSync = function(dir, _result) {
-  var files = fs.readdirSync(dir);
-  var i, len, file;
+RecursiveRead.prototype.fileSync = function(dir) {
+  var result = [];
 
-  if ( ! _result ) {
-    _result = this.result;
-  }
-
-  for (i = 0, len = files.length; i < len; i++) {
-    file = files[i];
-    if (fs.statSync(path.join(dir, file)).isDirectory()) {
-      arguments.callee(path.join(dir, file), _result);
-    } else {
-      _result.push(path.join(dir, file));
+  (function(dir) {
+    var files = fs.readdirSync(dir);
+    var _i, _len;
+    for (_i = 0, _len = files.length; _i < _len; _i++) {
+      if (!files[_i]) {
+        arguments.callee(path.join(dir, files[_i]));
+      }
+      if (fs.statSync(path.join(dir, files[_i])).isDirectory()) {
+        arguments.callee(path.join(dir, files[_i]));
+      } else {
+        result.push(path.join(dir, files[_i]));
+      }
     }
-  }
-  return _result;
+  }).call(this, dir);
+
+  return result;
 }
 
 RecursiveRead.prototype.dir = function(dir, callback) {
@@ -55,22 +55,24 @@ RecursiveRead.prototype.dir = function(dir, callback) {
   });
 }
 
-RecursiveRead.prototype.dirSync = function(dir, _result) {
-  var files = fs.readdirSync(dir);
-  var i, len, file;
+RecursiveRead.prototype.dirSync = function(dir) {
+  var result = [];
 
-  if ( ! _result ) {
-    _result = this.result;
-  }
-
-  for (i = 0, len = files.length; i < len; i++) {
-    file = files[i];
-    if (fs.statSync(path.join(dir, file)).isDirectory()) {
-      _result.push(path.join(dir, file));
-      arguments.callee(path.join(dir, file), _result);
+  (function(dir) {
+    var files = fs.readdirSync(dir);
+    var _i, _len;
+    for (_i = 0, _len = files.length; _i < _len; _i++) {
+      if (!files[_i]) {
+        arguments.callee(path.join(dir, files[_i]));
+      }
+      if (fs.statSync(path.join(dir, files[_i])).isDirectory()) {
+        result.push(path.join(dir, files[_i]));
+        arguments.callee(path.join(dir, files[_i]));
+      }
     }
-  }
-  return _result;
+  }).call(this, dir);
+
+  return result;
 }
 
 module.exports = RecursiveRead;

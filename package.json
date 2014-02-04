@@ -1,6 +1,6 @@
 {
   "name": "readdir-recursive",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "read directory recursively & output files or dirs",
   "main": "index.js",
   "scripts": {
